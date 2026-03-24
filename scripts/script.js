@@ -23,16 +23,13 @@ function getHumanChoice () {
         }
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
-
 let humanScore = 0;
 let computerScore = 0;
 
 function playRound(humanChoice, computerChoice) {
     if (humanChoice !== undefined && humanChoice !== null) {
         if (humanChoice == computerChoice) {
-            console.log(`Empate. Ambos eligieron ${computerChoice}`);
+            console.log(`Empate. Ambos eligieron ${computerChoice}. Marcador: Jugador ${humanScore} - Máquina ${computerScore}`);
         } else if (
             (humanChoice == "piedra" && computerChoice == "papel") ||
             (humanChoice == "papel" && computerChoice == "tijera") ||
@@ -49,4 +46,20 @@ function playRound(humanChoice, computerChoice) {
     }
 }
 
-playRound(humanSelection, computerSelection);
+function playGame() {
+    playRound(getHumanChoice(), getComputerChoice());
+    playRound(getHumanChoice(), getComputerChoice());
+    playRound(getHumanChoice(), getComputerChoice());
+    playRound(getHumanChoice(), getComputerChoice());
+    playRound(getHumanChoice(), getComputerChoice());
+
+    if (humanScore > computerScore) {
+        console.log(`¡Ganaste la partida!. Marcador: Jugador ${humanScore} - Máquina ${computerScore}`);
+    } else if (computerScore > humanScore) {
+        console.log(`¡Perdiste la partida. Marcador: Jugador ${humanScore} - Máquina ${computerScore}`);
+    } else {
+        console.log(`¡Partida empatada!. Marcador: Jugador ${humanScore} - Máquina ${computerScore}`);
+    }
+}
+
+playGame();
